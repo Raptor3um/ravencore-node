@@ -1,4 +1,4 @@
-Ravencore Node
+rtmcore Node
 ============
 
 A Raptoreum full node for building applications and services with Node.js. A node is extensible and can be configured to run additional services. At the minimum a node has an interface to [Raptoreum with additional indexing](https://github.com/Raptor3um/raptoreum/tree/0.15.0-rtmcore) for more advanced address queries. Additional services can be enabled to make a node more useful such as exposing new APIs, running a block explorer and wallet service.
@@ -10,7 +10,7 @@ npm install -g rtmcore-node
 rtmcore-node start
 ```
 
-Note: For your convenience, we distribute raptoreumd binaries for x86_64 Linux and x86_64 Mac OS X. Upon npm install, the binaries for your platform will be downloaded. For more detailed installation instructions, or if you want to compile the project yourself, then please see the Ravencore branch of [Raptoreum with additional indexing](https://github.com/Raptor3um/raptoreum/tree/0.15.0-rtmcore).
+Note: For your convenience, we distribute raptoreumd binaries for x86_64 Linux and x86_64 Mac OS X. Upon npm install, the binaries for your platform will be downloaded. For more detailed installation instructions, or if you want to compile the project yourself, then please see the rtmcore branch of [Raptoreum with additional indexing](https://github.com/Raptor3um/raptoreum/tree/0.15.0-rtmcore).
 
 ## Prerequisites
 
@@ -22,7 +22,7 @@ Note: For your convenience, we distribute raptoreumd binaries for x86_64 Linux a
 
 ## Configuration
 
-Ravencore includes a Command Line Interface (CLI) for managing, configuring and interfacing with your Ravencore Node.
+rtmcore includes a Command Line Interface (CLI) for managing, configuring and interfacing with your rtmcore Node.
 
 ```bash
 rtmcore-node create -d <raptoreum-data-dir> mynode
@@ -35,11 +35,11 @@ This will create a directory with configuration files for your node and install 
 
 ## Add-on Services
 
-There are several add-on services available to extend the functionality of Ravencore:
+There are several add-on services available to extend the functionality of rtmcore:
 
 - [Insight API](https://github.com/Raptor3um/insight-api)
 - [Insight UI](https://github.com/Raptor3um/insight-ui)
-- [Ravencore Wallet Service](https://github.com/Raptor3um/rtmcore-wallet-service)
+- [rtmcore Wallet Service](https://github.com/Raptor3um/rtmcore-wallet-service)
 
 ## Documentation
 

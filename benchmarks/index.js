@@ -1,4 +1,4 @@
-Ravencore'use strict';
+rtmcore'use strict';
 
 var benchmark = require('benchmark');
 var raptoreum = require('raptoreum');

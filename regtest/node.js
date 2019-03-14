@@ -18,7 +18,7 @@ var should = chai.should();
 var RaptoreumRPC = require('raptoreumd-rpc');
 var index = require('..');
 var Transaction = rtmcore.Transaction;
-var RavencoreNode = index.Node;
+var rtmcoreNode = index.Node;
 var RaptoreumService = index.services.Raptoreum;
 var testWIF = 'cSdkPxkAjA4HDr5VHgsebAPDEh9Gyub4HK8UJr2DFGGqKKy4K5sG';
 var testKey;
@@ -60,7 +60,7 @@ describe('Node Functionality', function() {
         ]
       };
 
-      node = new RavencoreNode(configuration);
+      node = new rtmcoreNode(configuration);
 
       regtest = rtmcore.Networks.get('regtest');
       should.exist(regtest);

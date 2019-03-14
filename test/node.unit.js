@@ -10,7 +10,7 @@ var BaseService = require('../lib/service');
 var index = require('../lib');
 var log = index.log;
 
-describe('Ravencore Node', function() {
+describe('rtmcore Node', function() {
 
   var baseConfig = {};
 

@@ -13,7 +13,7 @@ var should = chai.should();
 var index = require('..');
 var log = index.log;
 log.debug = function() {};
-var RavencoreNode = index.Node;
+var rtmcoreNode = index.Node;
 var RaptoreumService = index.services.Raptoreum;
 
 describe('Raptoreum Cluster', function() {
@@ -136,7 +136,7 @@ describe('Raptoreum Cluster', function() {
     var regtest = rtmcore.Networks.get('regtest');
     should.exist(regtest);
 
-    node = new RavencoreNode(configuration);
+    node = new rtmcoreNode(configuration);
 
     node.on('error', function(err) {
       log.error(err);

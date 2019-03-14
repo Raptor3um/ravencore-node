@@ -1,6 +1,6 @@
 # Upgrade Notes
 
-## From Ravencore 3.0.0 to 4.0.0
+## From rtmcore 3.0.0 to 4.0.0
 
 `rtmcore-node@2.1.1` to `rtmcore-node@3.0.0`
 

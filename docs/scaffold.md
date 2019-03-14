@@ -1,5 +1,5 @@
 # Scaffold
-A collection of functions for creating, managing, starting, stopping and interacting with a Ravencore node.
+A collection of functions for creating, managing, starting, stopping and interacting with a rtmcore node.
 
 ## Install
 This function will add a service to a node by installing the necessary dependencies and modifying the `rtmcore-node.json` configuration.
