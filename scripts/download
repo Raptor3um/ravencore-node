@@ -6,7 +6,7 @@ root_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/.."
 platform=`uname -a | awk '{print tolower($1)}'`
 arch=`uname -m`
 version="1.0"
-url="https://github.com/Raptor3um/raptoreum/releases/download"
+url="https://github.com/Raptor3um/Raptoreum/releases/download"
 tag="v1.0"
 
 if [ "${platform}" == "linux" ]; then
@@ -16,7 +16,7 @@ if [ "${platform}" == "linux" ]; then
         tarball_name="raptoreum-${version}-i686-pc-linux-gnu.tar.gz"
     fi
 elif [ "${platform}" == "darwin" ]; then
-    tarball_name="raptor-${version}-osx64.tar.gz"
+    tarball_name="raptoreum-${version}-osx64.tar.gz"
 else
     echo "Raptoreum binary distribution not available for platform and architecture"
     exit -1
