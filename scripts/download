@@ -6,30 +6,30 @@ root_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/.."
 platform=`uname -a | awk '{print tolower($1)}'`
 arch=`uname -m`
 version="2.1.2"
-url="https://github.com/underdarkskies/ravencoin/releases/download"
+url="https://github.com/Raptor3um/raptoreum/releases/download"
 tag="v2.1.2"
 
 if [ "${platform}" == "linux" ]; then
     if [ "${arch}" == "x86_64" ]; then
-        tarball_name="raven-${version}-x86_64-linux-gnu.tar.gz"
+        tarball_name="raptor-${version}-x86_64-linux-gnu.tar.gz"
     elif [ "${arch}" == "x86_32" ]; then
-        tarball_name="raven-${version}-i686-pc-linux-gnu.tar.gz"
+        tarball_name="raptor-${version}-i686-pc-linux-gnu.tar.gz"
     fi
 elif [ "${platform}" == "darwin" ]; then
-    tarball_name="raven-${version}-osx64.tar.gz"
+    tarball_name="raptor-${version}-osx64.tar.gz"
 else
-    echo "Ravencoin binary distribution not available for platform and architecture"
+    echo "Raptoreum binary distribution not available for platform and architecture"
     exit -1
 fi
 
 binary_url="${url}/${tag}/${tarball_name}"
 shasums_url="${url}/${tag}/SHA256SUMS.asc"
 
-download_ravend() {
+download_raptoreumd() {
 
     cd "${root_dir}/bin"
 
-    echo "Downloading ravencoin: ${binary_url}"
+    echo "Downloading raptoreum: ${binary_url}"
 
     is_curl=true
     if hash curl 2>/dev/null; then
@@ -48,20 +48,20 @@ download_ravend() {
             wget $shasums_url
         fi
         if test -e "${tarball_name}"; then
-            echo "Unpacking ravencoin distribution"
+            echo "Unpacking raptoreum distribution"
             tar -xvzf $tarball_name
             if test $? -eq 0; then
-                ln -sf "raven-${version}/bin/ravend"
+                ln -sf "raptor-${version}/bin/raptoreumd"
                 return;
             fi
         fi
     fi
-    echo "Ravencoin binary distribution could not be downloaded"
+    echo "Raptoreum binary distribution could not be downloaded"
     exit -1
 }
 
 verify_download() {
-    echo "Verifying signatures of ravencoin download"
+    echo "Verifying signatures of raptoreum download"
     gpg --verify "${root_dir}/bin/SHA256SUMS.asc"
 
     if hash shasum 2>/dev/null; then
@@ -85,11 +85,11 @@ verify_download() {
 download=1
 verify=0
 
-if [ "${SKIP_RAVENCOIN_DOWNLOAD}" = 1 ]; then
+if [ "${SKIP_RAPTOREUM_DOWNLOAD}" = 1 ]; then
     download=0;
 fi
 
-if [ "${VERIFY_RAVENCOIN_DOWNLOAD}" = 1 ]; then
+if [ "${VERIFY_RAPTOREUM_DOWNLOAD}" = 1 ]; then
     verify=1;
 fi
 
@@ -98,10 +98,10 @@ while [ -n "$1" ]; do
   value="$2"
 
   case $param in
-    --skip-ravencoin-download)
+    --skip-raptoreum-download)
           download=0
           ;;
-    --verify-ravencoin-download)
+    --verify-raptoreum-download)
           verify=1
           ;;
   esac
@@ -109,7 +109,7 @@ while [ -n "$1" ]; do
 done
 
 if [ "${download}" = 1 ]; then
-    download_ravend
+    download_raptoreumd
 fi
 
 if [ "${verify}" = 1 ]; then

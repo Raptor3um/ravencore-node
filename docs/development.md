@@ -10,22 +10,22 @@ nvm install v4
 
 ## Fork and Download Repositories
 
-To develop ravencore-node:
+To develop rtmcore-node:
 
 ```bash
 cd ~
-git clone git@github.com:<yourusername>/ravencore-node.git
-git clone git@github.com:<yourusername>/ravencore-lib.git
+git clone git@github.com:<yourusername>/rtmcore-node.git
+git clone git@github.com:<yourusername>/rtmcore-lib.git
 ```
 
-To develop ravencoin or to compile from source:
+To develop raptoreum or to compile from source:
 
 ```bash
-git clone git@github.com:<yourusername>/ravencoin.git
+git clone git@github.com:<yourusername>/raptoreum.git
 git fetch origin <branchname>:<branchname>
 git checkout <branchname>
 ```
-**Note**: See ravencoin documentation for building ravencoin on your platform.
+**Note**: See raptoreum documentation for building raptoreum on your platform.
 
 
 ## Install Development Dependencies
@@ -46,27 +46,27 @@ brew install zeromq
 ## Install and Symlink
 
 ```bash
-cd ravencore-lib
+cd rtmcore-lib
 npm install
-cd ../ravencore-node
+cd ../rtmcore-node
 npm install
 ```
-**Note**: If you get a message about not being able to download ravencoin distribution, you'll need to compile ravend from source, and setup your configuration to use that version.
+**Note**: If you get a message about not being able to download raptoreum distribution, you'll need to compile raptoreumd from source, and setup your configuration to use that version.
 
 
-We now will setup symlinks in `ravencore-node` *(repeat this for any other modules you're planning on developing)*:
+We now will setup symlinks in `rtmcore-node` *(repeat this for any other modules you're planning on developing)*:
 ```bash
 cd node_modules
-rm -rf ravencore-lib
-ln -s ~/ravencore-lib
-rm -rf ravend-rpc
-ln -s ~/ravend-rpc
+rm -rf rtmcore-lib
+ln -s ~/rtmcore-lib
+rm -rf raptoreumd-rpc
+ln -s ~/raptoreumd-rpc
 ```
 
-And if you're compiling or developing ravencoin:
+And if you're compiling or developing raptoreum:
 ```bash
 cd ../bin
-ln -sf ~/ravencoin/src/ravend
+ln -sf ~/raptoreum/src/raptoreumd
 ```
 
 ## Run Tests
@@ -78,19 +78,19 @@ npm install mocha -g
 
 To run all test suites:
 ```bash
-cd ravencore-node
+cd rtmcore-node
 npm run regtest
 npm run test
 ```
 
 To run a specific unit test in watch mode:
 ```bash
-mocha -w -R spec test/services/ravend.unit.js
+mocha -w -R spec test/services/raptoreumd.unit.js
 ```
 
 To run a specific regtest:
 ```bash
-mocha -R spec regtest/ravend.js
+mocha -R spec regtest/raptoreumd.js
 ```
 
 ## Running a Development Node
@@ -102,46 +102,46 @@ cd ~
 mkdir devnode
 cd devnode
 mkdir node_modules
-touch ravencore-node.json
+touch rtmcore-node.json
 touch package.json
 ```
 
-Edit `ravencore-node.json` with something similar to:
+Edit `rtmcore-node.json` with something similar to:
 ```json
 {
   "network": "livenet",
   "port": 3001,
   "services": [
-    "ravend",
+    "raptoreumd",
     "web",
     "insight-api",
     "insight-ui",
     "<additional_service>"
   ],
   "servicesConfig": {
-    "ravend": {
+    "raptoreumd": {
       "spawn": {
-        "datadir": "/home/<youruser>/.ravend",
-        "exec": "/home/<youruser>/ravencoin/src/ravend"
+        "datadir": "/home/<youruser>/.raptoreumd",
+        "exec": "/home/<youruser>/raptoreum/src/raptoreumd"
       }
     }
   }
 }
 ```
 
-**Note**: To install services [insight-api](https://github.com/underdarkskies/insight-api) and [insight-ui](https://github.com/underdarkskies/insight-ui) you'll need to clone the repositories locally.
+**Note**: To install services [insight-api](https://github.com/Raptor3um/insight-api) and [insight-ui](https://github.com/Raptor3um/insight-ui) you'll need to clone the repositories locally.
 
 Setup symlinks for all of the services and dependencies:
 
 ```bash
 cd node_modules
-ln -s ~/ravencore-lib
-ln -s ~/ravencore-node
+ln -s ~/rtmcore-lib
+ln -s ~/rtmcore-node
 ln -s ~/insight-api
 ln -s ~/insight-ui
 ```
 
-Make sure that the `<datadir>/raven.conf` has the necessary settings, for example:
+Make sure that the `<datadir>/raptor.conf` has the necessary settings, for example:
 ```
 server=1
 whitelist=127.0.0.1
@@ -152,11 +152,11 @@ spentindex=1
 zmqpubrawtx=tcp://127.0.0.1:28332
 zmqpubhashblock=tcp://127.0.0.1:28332
 rpcallowip=127.0.0.1
-rpcuser=ravencoin
+rpcuser=raptoreum
 rpcpassword=local321
 ```
 
 From within the `devnode` directory with the configuration file, start the node:
 ```bash
-../ravencore-node/bin/ravencore-node start
+../rtmcore-node/bin/rtmcore-node start
 ```

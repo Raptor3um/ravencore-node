@@ -1,15 +1,15 @@
 Ravencore'use strict';
 
 var benchmark = require('benchmark');
-var ravencoin = require('ravencoin');
+var raptoreum = require('raptoreum');
 var async = require('async');
 var maxTime = 20;
 
-console.log('Ravencoin Service native interface vs. Ravencoin JSON RPC interface');
+console.log('Raptoreum Service native interface vs. Raptoreum JSON RPC interface');
 console.log('----------------------------------------------------------------------');
 
-// To run the benchmarks a fully synced Ravencoin directory is needed. The RPC comands
-// can be modified to match the settings in raven.conf.
+// To run the benchmarks a fully synced Raptoreum directory is needed. The RPC comands
+// can be modified to match the settings in raptor.conf.
 
 var fixtureData = {
   blockHashes: [
@@ -26,34 +26,34 @@ var fixtureData = {
   ]
 };
 
-var ravend = require('../').services.Ravencoin({
+var raptoreumd = require('../').services.Raptoreum({
   node: {
-    datadir: process.env.HOME + '/.raven',
+    datadir: process.env.HOME + '/.raptor',
     network: {
       name: 'testnet'
     }
   }
 });
 
-ravend.on('error', function(err) {
+raptoreumd.on('error', function(err) {
   console.error(err.message);
 });
 
-ravend.start(function(err) {
+raptoreumd.start(function(err) {
   if (err) {
     throw err;
   }
-  console.log('Ravencoin started');
+  console.log('Raptoreum started');
 });
 
-ravend.on('ready', function() {
+raptoreumd.on('ready', function() {
 
-  console.log('Ravencoin ready');
+  console.log('Raptoreum ready');
 
-  var client = new ravencoin.Client({
+  var client = new raptoreum.Client({
     host: 'localhost',
     port: 18332,
-    user: 'raven',
+    user: 'raptor',
     pass: 'local321'
   });
 
@@ -64,12 +64,12 @@ ravend.on('ready', function() {
       var hashesLength = fixtureData.blockHashes.length;
       var txLength = fixtureData.txHashes.length;
 
-      function ravendGetBlockNative(deffered) {
+      function raptoreumdGetBlockNative(deffered) {
         if (c >= hashesLength) {
           c = 0;
         }
         var hash = fixtureData.blockHashes[c];
-        ravend.getBlock(hash, function(err, block) {
+        raptoreumd.getBlock(hash, function(err, block) {
           if (err) {
             throw err;
           }
@@ -78,7 +78,7 @@ ravend.on('ready', function() {
         c++;
       }
 
-      function ravendGetBlockJsonRpc(deffered) {
+      function raptoreumdGetBlockJsonRpc(deffered) {
         if (c >= hashesLength) {
           c = 0;
         }
@@ -92,12 +92,12 @@ ravend.on('ready', function() {
         c++;
       }
 
-      function ravenGetTransactionNative(deffered) {
+      function raptorGetTransactionNative(deffered) {
         if (c >= txLength) {
           c = 0;
         }
         var hash = fixtureData.txHashes[c];
-        ravend.getTransaction(hash, true, function(err, tx) {
+        raptoreumd.getTransaction(hash, true, function(err, tx) {
           if (err) {
             throw err;
           }
@@ -106,7 +106,7 @@ ravend.on('ready', function() {
         c++;
       }
 
-      function ravenGetTransactionJsonRpc(deffered) {
+      function raptorGetTransactionJsonRpc(deffered) {
         if (c >= txLength) {
           c = 0;
         }
@@ -122,22 +122,22 @@ ravend.on('ready', function() {
 
       var suite = new benchmark.Suite();
 
-      suite.add('ravend getblock (native)', ravendGetBlockNative, {
+      suite.add('raptoreumd getblock (native)', raptoreumdGetBlockNative, {
         defer: true,
         maxTime: maxTime
       });
 
-      suite.add('ravend getblock (json rpc)', ravendGetBlockJsonRpc, {
+      suite.add('raptoreumd getblock (json rpc)', raptoreumdGetBlockJsonRpc, {
         defer: true,
         maxTime: maxTime
       });
 
-      suite.add('ravend gettransaction (native)', ravenGetTransactionNative, {
+      suite.add('raptoreumd gettransaction (native)', raptorGetTransactionNative, {
         defer: true,
         maxTime: maxTime
       });
 
-      suite.add('ravend gettransaction (json rpc)', ravenGetTransactionJsonRpc, {
+      suite.add('raptoreumd gettransaction (json rpc)', raptorGetTransactionJsonRpc, {
         defer: true,
         maxTime: maxTime
       });
@@ -158,7 +158,7 @@ ravend.on('ready', function() {
       throw err;
     }
     console.log('Finished');
-    ravend.stop(function(err) {
+    raptoreumd.stop(function(err) {
       if (err) {
         console.error('Fail to stop services: ' + err);
         process.exit(1);

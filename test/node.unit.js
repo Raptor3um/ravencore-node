@@ -2,8 +2,8 @@
 
 var should = require('chai').should();
 var sinon = require('sinon');
-var ravencore = require('ravencore-lib');
-var Networks = ravencore.Networks;
+var rtmcore = require('rtmcore-lib');
+var Networks = rtmcore.Networks;
 var proxyquire = require('proxyquire');
 var util = require('util');
 var BaseService = require('../lib/service');
@@ -425,7 +425,7 @@ describe('Ravencore Node', function() {
 
   describe('#getNetworkName', function() {
     afterEach(function() {
-      ravencore.Networks.disableRegtest();
+      rtmcore.Networks.disableRegtest();
     });
     it('it will return the network name for livenet', function() {
       var node = new Node(baseConfig);

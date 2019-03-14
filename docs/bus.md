@@ -20,11 +20,11 @@ bus.close();
 ```javascript
 
 // subscribe to all transaction events
-bus.subscribe('ravend/rawtransaction');
+bus.subscribe('raptoreumd/rawtransaction');
 
 // to subscribe to new block hashes
-bus.subscribe('ravend/hashblock');
+bus.subscribe('raptoreumd/hashblock');
 
 // unsubscribe
-bus.unsubscribe('ravend/rawtransaction');
+bus.unsubscribe('raptoreumd/rawtransaction');
 ```

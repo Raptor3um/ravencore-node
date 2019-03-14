@@ -1,4 +1,4 @@
 #!/usr/bin/env node
 
-var ravencore = require('../lib/cli/ravencore');
-ravencore();
+var rtmcore = require('../lib/cli/rtmcore');
+rtmcore();

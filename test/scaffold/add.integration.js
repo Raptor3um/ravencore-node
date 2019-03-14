@@ -25,7 +25,7 @@ describe('#add', function() {
         throw err;
       }
       fs.writeFile(
-        testDir + '/s0/s1/ravencore-node.json',
+        testDir + '/s0/s1/rtmcore-node.json',
         JSON.stringify(startConfig),
         function(err) {
           if (err) {
@@ -90,12 +90,12 @@ describe('#add', function() {
       });
     });
 
-    it('will update ravencore-node.json services', function(done) {
+    it('will update rtmcore-node.json services', function(done) {
       var callCount = 0;
       var oldPackage = {
         dependencies: {
-          'ravencore-lib': '^v0.13.7',
-          'ravencore-node': '^v0.2.0'
+          'rtmcore-lib': '^v0.13.7',
+          'rtmcore-node': '^v0.2.0'
         }
       };
       var spawn = sinon.stub().returns({
@@ -130,7 +130,7 @@ describe('#add', function() {
         services: ['a', 'b', 'c']
       }, function(err) {
         should.not.exist(err);
-        var configPath = path.resolve(testDir, 's0/s1/ravencore-node.json');
+        var configPath = path.resolve(testDir, 's0/s1/rtmcore-node.json');
         var config = JSON.parse(fs.readFileSync(configPath));
         config.services.should.deep.equal(['a','b','c']);
         done();
