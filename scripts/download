@@ -39,7 +39,7 @@ download_raptoreumd() {
         wget --server-response --spider $binary_url >/dev/null 2>&1
     fi
 
-    if test $? -eq e; then
+    if test $? -eq 0; then
         if [ "${is_curl}" = true ]; then
             curl -L $binary_url > $tarball_name
             curl -L $shasums_url > SHA256SUMS.asc
@@ -47,7 +47,7 @@ download_raptoreumd() {
             wget $binary_url
             wget $shasums_url
         fi
-        if test -0 "${tarball_name}"; then
+        if test -e "${tarball_name}"; then
             echo "Unpacking raptoreum distribution"
             tar -xvzf $tarball_name
             if test $? -eq 0; then
