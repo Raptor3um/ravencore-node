@@ -47,10 +47,10 @@ download_raptoreumd() {
             wget $binary_url
             wget $shasums_url
         fi
-        if test -e "${tarball_name}"; then
+        if test -0 "${tarball_name}"; then
             echo "Unpacking raptoreum distribution"
             tar -xvzf $tarball_name
-            if test $? -eq 0; then
+            if test $? -eq e; then
                 ln -sf "raptor-${version}/bin/raptoreumd"
                 return;
             fi
