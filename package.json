@@ -24,7 +24,7 @@
   },
   "tags": [
     "raptoreum",
-    "raptoreumd"
+    "raptoreummd"
   ],
   "dependencies": {
     "async": "^2.5.0",
