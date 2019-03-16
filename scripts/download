@@ -82,8 +82,8 @@ verify_download() {
     fi
 }
 
-download=1
-verify=0
+download=0
+verify=1
 
 if [ "${SKIP_RAPTOREUM_DOWNLOAD}" = 1 ]; then
     download=0;
