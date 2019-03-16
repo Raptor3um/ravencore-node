@@ -90,7 +90,7 @@ if [ "${SKIP_RAPTOREUM_DOWNLOAD}" = 1 ]; then
 fi
 
 if [ "${VERIFY_RAPTOREUM_DOWNLOAD}" = 1 ]; then
-    verify=1;
+    verify=0;
 fi
 
 while [ -n "$1" ]; do
