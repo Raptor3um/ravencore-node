@@ -20,7 +20,6 @@ elif [ "${platform}" == "darwin" ]; then
 else
     echo "Raptoreum binary distribution not available for platform and architecture"
     exit -1
-fi
 
 binary_url="${url}/${tag}/${tarball_name}"
 #shasums_url="${url}/${tag}/SHA256SUMS.asc"
