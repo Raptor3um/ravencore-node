@@ -23,7 +23,7 @@ else
 fi
 
 binary_url="${url}/${tag}/${tarball_name}"
-shasums_url="${url}/${tag}/SHA256SUMS.asc"
+#shasums_url="${url}/${tag}/SHA256SUMS.asc"
 
 download_raptoreumd() {
 
@@ -42,10 +42,10 @@ download_raptoreumd() {
     if test $? -eq 0; then
         if [ "${is_curl}" = true ]; then
             curl -L $binary_url > $tarball_name
-            curl -L $shasums_url > SHA256SUMS.asc
+            #curl -L $shasums_url > SHA256SUMS.asc
         else
             wget $binary_url
-            wget $shasums_url
+            #wget $shasums_url
         fi
         if test -e "${tarball_name}"; then
             echo "Unpacking Raptoreum distribution"
@@ -60,27 +60,27 @@ download_raptoreumd() {
     exit -1
 }
 
-verify_download() {
-    echo "Verifying signatures of Raptoreum download"
-    gpg --verify "${root_dir}/bin/SHA256SUMS.asc"
+#verify_download() {
+ #   echo "Verifying signatures of Raptoreum download"
+  #  gpg --verify "${root_dir}/bin/SHA256SUMS.asc"
+#
+ #   if hash shasum 2>/dev/null; then
+  #      shasum_cmd="shasum -a 256"
+   # else
+    #    shasum_cmd="sha256sum"
+    #fi
 
-    if hash shasum 2>/dev/null; then
-        shasum_cmd="shasum -a 256"
-    else
-        shasum_cmd="sha256sum"
-    fi
-
-    download_sha=$(${shasum_cmd} "${root_dir}/bin/${tarball_name}" | awk '{print $1}')
-    expected_sha=$(cat "${root_dir}/bin/SHA256SUMS.asc" | grep "${tarball_name}" | awk '{print $1}')
-    echo "Checksum (download): ${download_sha}"
-    echo "Checksum (verified): ${expected_sha}"
-    if [ "${download_sha}" != "${expected_sha}" ]; then
-        echo -e "\033[1;31mChecksums did NOT match!\033[0m\n"
-        exit 1
-    else
-        echo -e "\033[1;32mChecksums matched!\033[0m\n"
-    fi
-}
+    #download_sha=$(${shasum_cmd} "${root_dir}/bin/${tarball_name}" | awk '{print $1}')
+    #expected_sha=$(cat "${root_dir}/bin/SHA256SUMS.asc" | grep "${tarball_name}" | awk '{print $1}')
+    #echo "Checksum (download): ${download_sha}"
+    #echo "Checksum (verified): ${expected_sha}"
+    #if [ "${download_sha}" != "${expected_sha}" ]; then
+     #   echo -e "\033[1;31mChecksums did NOT match!\033[0m\n"
+     #   exit 1
+    #else
+     #   echo -e "\033[1;32mChecksums matched!\033[0m\n"
+   # fi
+#}
 
 download=1
 verify=0
