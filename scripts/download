@@ -31,5 +31,5 @@ download_raptoreumd() {
     echo "Downloading raptoreum: ${binary_url}"
     wget $binary_url
     tar -xvzf $tarball_name
-
+}
    exit 0
