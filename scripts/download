@@ -24,7 +24,7 @@ fi
 
 binary_url="${url}/${tag}/${tarball_name}"
 #shasums_url="${url}/${tag}/SHA256SUMS.asc"
-
+echo "Download URL: ${binary_url}"
 download_raptoreumd() {
 
     cd "${root_dir}/bin"
