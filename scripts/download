@@ -51,7 +51,7 @@ download_raptoreumd() {
             echo "Unpacking Raptoreum distribution"
             tar -xvzf $tarball_name
             if test $? -eq 0; then
-                ln -sf "raptor-${version}/bin/raptoreumd"
+                ln -sf "raptoreum-${version}/bin/raptoreumd"
                 return;
             fi
         fi
