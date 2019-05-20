@@ -5,9 +5,9 @@ set -e
 root_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/.."
 platform=`uname -a | awk '{print tolower($1)}'`
 arch=`uname -m`
-version="1.2.1"
+version="1.2.2"
 url="https://github.com/Raptor3um/raptoreum/releases/download"
-tag="1.2.1"
+tag="1.2.2"
 
 if [ "${platform}" == "linux" ]; then
     if [ "${arch}" == "x86_64" ]; then
